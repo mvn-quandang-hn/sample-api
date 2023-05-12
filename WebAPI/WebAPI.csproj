@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>795935b0-c04f-4597-9871-bc6f838add5c</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Models\" />
+    <Folder Include="Application\DTOs\" />
+    <Folder Include="Application\Queries\" />
+    <Folder Include="Application\Validations\" />
+    <Folder Include="Infrastructure\Migrations\" />
+    <Folder Include="Infrastructure\Middlewares\" />
+    <Folder Include="Infrastructure\Filters\" />
+    <Folder Include="Infrastructure\Auth\" />
+    <Folder Include="Infrastructure\Services\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+</Project>
