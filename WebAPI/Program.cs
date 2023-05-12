@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using WebAPI.Application.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<MasterDbContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("SampleDatabase"))
+);
 
 // Add services to the container.
 
