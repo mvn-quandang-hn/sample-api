@@ -11,24 +11,24 @@ namespace WebAPI.Application.Services
     {
         private readonly MasterDbContext _masterDbContext;
         private readonly IMapper _mapper;
-        public LanguageService(MasterDbContext masterDbContex, IMapper mapper)
+        public LanguageService(MasterDbContext masterDbContext, IMapper mapper)
         {
-            _masterDbContext = masterDbContex;
+            _masterDbContext = masterDbContext;
             _mapper = mapper;
         }
         public async Task<LanguageResponse> Create(LanguageRequest createLanguageRequest)
         {
-            var Language = _mapper.Map<Language>(createLanguageRequest);
-            _masterDbContext.Add(Language);
+            var language = _mapper.Map<Language>(createLanguageRequest);
+            _masterDbContext.Add(language);
             await _masterDbContext.SaveChangesAsync();
-            return _mapper.Map<LanguageResponse>(Language);
+            return _mapper.Map<LanguageResponse>(language);
         }
 
-        public async Task<LanguageResponse> Delete(Language Language)
+        public async Task<LanguageResponse> Delete(Language language)
         {
-            _masterDbContext.Remove(Language);
+            _masterDbContext.Remove(language);
             await _masterDbContext.SaveChangesAsync();
-            return _mapper.Map<LanguageResponse>(Language);
+            return _mapper.Map<LanguageResponse>(language);
         }
 
         public async Task<Language?> FindById(int? id)
@@ -38,10 +38,10 @@ namespace WebAPI.Application.Services
 
         public async Task<LanguageListResponse> List()
         {
-            var Languages = await _masterDbContext.Languages.OrderByDescending(c => c.Id).ToListAsync();
+            var languages = await _masterDbContext.Languages.OrderByDescending(c => c.Id).ToListAsync();
             return new LanguageListResponse
             {
-                Languages = _mapper.Map<List<LanguageViewModel>>(Languages),
+                Languages = _mapper.Map<List<LanguageViewModel>>(languages)
             };
         }
 
@@ -49,17 +49,17 @@ namespace WebAPI.Application.Services
         {
             return _masterDbContext.Languages.FirstOrDefaultAsync(c => c.Name == name);
         }
-        public async Task<LanguageResponse> EditLanguage(Language Language, LanguageRequest request)
+        public async Task<LanguageResponse> EditLanguage(Language language, LanguageRequest request)
         {
             if (!string.IsNullOrEmpty(request.Name))
             {
-                Language.Locale = request.Locale;
-                Language.Name = request.Name;
-                Language.SavedBy = request.SavedBy;
-                _masterDbContext.Entry(Language).State = EntityState.Modified;
+                language.Locale = request.Locale;
+                language.Name = request.Name;
+                language.SavedBy = request.SavedBy;
+                _masterDbContext.Entry(language).State = EntityState.Modified;
                 await _masterDbContext.SaveChangesAsync();
             }
-            return _mapper.Map<LanguageResponse>(Language);
+            return _mapper.Map<LanguageResponse>(language);
         }
 
         public async Task<Language?> FindById(int id)
