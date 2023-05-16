@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebAPI.Application.Models
 {
     [Index(nameof(Name), IsUnique = true)]
-    public class Languages : BaseModel
+    public class Language : BaseModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

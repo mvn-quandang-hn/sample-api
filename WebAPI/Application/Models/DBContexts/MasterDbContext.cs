@@ -12,7 +12,7 @@ namespace WebAPI.Application.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
         }
-        public virtual DbSet<Languages> Languages { get; set; }
+        public virtual DbSet<Language> Languages { get; set; }
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
             OnBeforeSaving();
