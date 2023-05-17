@@ -3,11 +3,15 @@ using WebAPI.Application.Models;
 using WebAPI.Application.Models.MapperProfiles;
 using WebAPI.Extensions;
 
+Env.LoadDotEnv();
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MasterDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("SampleDatabase"))
 );
-builder.Services.AddHttpLogging(logging => { });
+// Add jwt authentication
+builder.AddJwtAuthentication();
+
+builder.Services.AddHttpLogging(_ => { });
 builder.Services.AddCors();
 // Add services to the container.
 builder.Services.AddControllers();
@@ -36,6 +40,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

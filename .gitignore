@@ -6,3 +6,4 @@ WebAPI/WebAPI.csproj.user
 /.vs
 /WebAPITest/bin
 /WebAPITest/obj
+WebAPI/.env
