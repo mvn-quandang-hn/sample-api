@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Application.DTOs;
 using WebAPI.Application.Services.Interfaces;
@@ -8,6 +9,7 @@ namespace WebAPI.Controllers;
 
 [ApiController]
 [Route($"{Constants.ApiPrefix}/[controller]")]
+[Authorize]
 public class LanguagesController : ControllerBase
 {
     private readonly ILanguageService _languageService;
